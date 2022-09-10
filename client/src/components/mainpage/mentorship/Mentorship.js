@@ -73,12 +73,15 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 	};
 
 	return (
-		<Box sx={{ px: 2, py: 2 }}>
-			<Grid container direction="row" justifyContent="flex-end">
-				<IconButton onClick={() => setModalShown(false)}>
-					<CloseIcon />
-				</IconButton>
-			</Grid>
+		<Box sx={{ px: 2, py: 2, position: "relative" }}>
+			{/* <Grid container direction="row" justifyContent="flex-end"> */}
+			<IconButton
+				onClick={() => setModalShown(false)}
+				sx={{ position: "absolute", top: "10px", right: "10px" }}
+			>
+				<CloseIcon />
+			</IconButton>
+			{/* </Grid> */}
 			<DialogContent>
 				<Grid direction="column">
 					<Grid container direction="row" style={{ width: "100%" }}>
@@ -100,13 +103,15 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 							sx={{ pl: 5 }}
 						>
 							<Typography variant="h3">{mentor.name}</Typography>
-							<Typography variant="h5">{mentor.title}</Typography>
-							<Typography variant="h6">
+							<Typography variant="h5" sx={{ color: "gray" }}>
+								{mentor.title}
+							</Typography>
+							{/* <Typography variant="h6">
 								Seniority: {mentor.experienceLevel}
 							</Typography>
 							<Typography variant="h6">
 								Department: {mentor.department}
-							</Typography>
+							</Typography> */}
 						</Grid>
 					</Grid>
 					<Typography sx={{ mt: 3 }}>{mentor.description}</Typography>
@@ -115,7 +120,15 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 			<DialogActions>
 				<Button
 					variant="contained"
-					sx={{ width: "100%" }}
+					sx={{
+						width: "100%",
+						backgroundColor: theme.palette.green.main,
+						color: theme.palette.sidebar.text,
+						margin: "auto",
+						"&:hover": {
+							backgroundColor: theme.palette.green.hover,
+						},
+					}}
 					onClick={handleSubmit}
 				>
 					{loading ? (
@@ -130,7 +143,7 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 };
 
 function Mentorship(props) {
-	// const theme = useTheme();
+	const theme = useTheme();
 	const [mentorsList, setMentorsList] = useState([]);
 	const [modalShown, setModalShown] = useState(false);
 	const [chosenMentor, setChosenMentor] = useState({});
@@ -162,36 +175,86 @@ function Mentorship(props) {
 	const mentorsCards = mentorsList.map((m, index) => {
 		return (
 			<Grid
-				xs={4}
-				sm={4}
-				md={4}
-				lg={4}
-				xl={4}
+				xs={6}
+				sm={6}
+				md={6}
+				lg={6}
+				xl={6}
 				key={index + m.id}
 				sx={{ px: 2, py: 2 }}
 			>
 				<Card>
-					<CardMedia
+					{/* <CardMedia
 						component="img"
 						height="200"
 						image={m.picture}
 						alt="mentor picture"
-						sx={{ objectFit: "cover", objectPosition: "center" }}
-					/>
-					<CardContent>
-						<Typography gutterBottom variant="h5" component="div">
-							{m.name}
-						</Typography>
-						<Typography sx={{ fontSize: 16 }}>
-							{m.title} - {m.department}
-						</Typography>
+						sx={{
+							objectFit: "cover",
+							objectPosition: "center",
+							borderRadius: "50%",
+						}}
+					/> */}
 
-						<Typography variant="body2" color="text.secondary">
-							{m.description}
-						</Typography>
+					<CardContent>
+						<Grid container item>
+							<Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+								<img
+									src={m.picture}
+									style={{
+										width: "140px",
+										height: "140px",
+										objectFit: "cover",
+										objectPosition: "center",
+										borderRadius: "50%",
+									}}
+								/>
+							</Grid>
+							<Grid item direction="column" xs={8} sm={8} md={8} lg={8} xl={8}>
+								<Typography
+									gutterBottom
+									variant="h4"
+									component="div"
+									style={{ wordBreak: "break-word" }}
+								>
+									{m.name}
+								</Typography>
+								<Typography
+									sx={{ fontSize: 16, wordBreak: "break-word", color: "gray" }}
+								>
+									{m.title}
+								</Typography>
+							</Grid>
+						</Grid>
+						<Grid item sx={{ mt: 3, height: "20px" }}>
+							<Typography
+								variant="body2"
+								sx={{
+									textOverflow: "ellipsis",
+									overflow: "hidden",
+									whiteSpace: "nowrap",
+									// height: "60px",
+									width: "auto",
+								}}
+							>
+								{m.description}
+							</Typography>
+						</Grid>
 					</CardContent>
 					<CardActions>
-						<Button size="medium" onClick={() => handleClick(m)}>
+						<Button
+							size="medium"
+							sx={{
+								backgroundColor: theme.palette.green.main,
+								color: theme.palette.sidebar.text,
+								margin: "auto",
+								width: "100%",
+								"&:hover": {
+									backgroundColor: theme.palette.green.hover,
+								},
+							}}
+							onClick={() => handleClick(m)}
+						>
 							Request Mentorship
 						</Button>
 					</CardActions>
@@ -201,46 +264,59 @@ function Mentorship(props) {
 	});
 
 	return (
-		<Grid direction="row" container>
-			{mentorsCards}
-			<Dialog
-				open={modalShown}
-				onClose={() => setModalShown(false)}
-				fullWidth={true}
-				maxWidth={"md"}
-			>
-				<MentorDialog
-					mentor={chosenMentor}
-					setModalShown={setModalShown}
-					setMentorApproved={setMentorApproved}
-				/>
-			</Dialog>
-			<Box
-				sx={{
-					position: "absolute",
-					bottom: " 20px",
-					left: "0",
-					right: "0",
-					marginLeft: "auto",
-					marginRight: "auto",
-					width: "fit-content",
-				}}
-			>
-				<Slide
-					variant="filled"
-					direction="up"
-					in={mentorApproved}
-					mountOnEnter
-					unmountOnExit
-				>
-					<Alert severity="success" sx={{ alignItems: "center" }}>
-						Mentorship requested was sent!{" "}
-						<IconButton onClick={() => setMentorApproved(false)} sx={{ ml: 8 }}>
-							<CloseIcon color="info" />
-						</IconButton>
-					</Alert>
-				</Slide>
+		<Grid container direction="column">
+			<Box sx={{ px: 2, py: 2 }}>
+				<Typography variant="h3">
+					Supercharge your Career with a Mentor
+				</Typography>
 			</Box>
+			<Grid direction="row" container item>
+				{mentorsCards}
+				<Dialog
+					open={modalShown}
+					onClose={() => setModalShown(false)}
+					fullWidth={true}
+					maxWidth={"md"}
+				>
+					<MentorDialog
+						mentor={chosenMentor}
+						setModalShown={setModalShown}
+						setMentorApproved={setMentorApproved}
+					/>
+				</Dialog>
+				<Box
+					sx={{
+						position: "absolute",
+						bottom: " 20px",
+						left: "0",
+						right: "0",
+						marginLeft: "auto",
+						marginRight: "auto",
+						width: "fit-content",
+					}}
+				>
+					<Slide
+						variant="filled"
+						direction="up"
+						in={mentorApproved}
+						mountOnEnter
+						unmountOnExit
+					>
+						<Alert
+							severity="success"
+							sx={{ alignItems: "center", backgroundColor: "#FF8686" }}
+						>
+							Mentorship requested was sent!{" "}
+							<IconButton
+								onClick={() => setMentorApproved(false)}
+								sx={{ ml: 8 }}
+							>
+								<CloseIcon color="info" />
+							</IconButton>
+						</Alert>
+					</Slide>
+				</Box>
+			</Grid>
 		</Grid>
 	);
 }
