@@ -17,15 +17,23 @@ import {
 	Alert,
 	Slide,
 } from "@mui/material";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "./firebase-config";
 
 import CloseIcon from "@mui/icons-material/Close";
 
 const NewTopicModal = ({ setModalShown }) => {
 	const [loading, setLoading] = useState(false);
+	const [title, setTitle] = useState("");
+  const [postText, setPostText] = useState("");
 
-	const handleSubmit = () => {
-		return;
-	};
+  const postsCollectionRef = collection(db, "Project");
+
+  const createPost = async () => {
+    await addDoc(postsCollectionRef, { title, postText });
+  };
+
+
 
 	return (
 		<Box sx={{ px: 2, py: 2 }}>
@@ -41,7 +49,7 @@ const NewTopicModal = ({ setModalShown }) => {
 				<Button
 					variant="contained"
 					sx={{ width: "100%" }}
-					onClick={handleSubmit}
+					onClick={createPost}
 				>
 					{loading ? (
 						<CircularProgress size={24} sx={{ color: "white" }} />
