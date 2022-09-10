@@ -130,11 +130,11 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 };
 
 function Mentorship(props) {
-	const theme = useTheme();
+	// const theme = useTheme();
 	const [mentorsList, setMentorsList] = useState([]);
 	const [modalShown, setModalShown] = useState(false);
 	const [chosenMentor, setChosenMentor] = useState({});
-	const [mentorApproved, setMentorApproved] = useState(true);
+	const [mentorApproved, setMentorApproved] = useState(false);
 
 	useEffect(() => {
 		fetchMentors();

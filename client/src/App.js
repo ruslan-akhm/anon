@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 import SideBar from "./components/SideBar";
-import Board from "./components/mainpage/Board";
-import Mentorship from "./components/mainpage/Mentorship";
+import Board from "./components/mainpage/board/Board";
+import Mentorship from "./components/mainpage/mentorship/Mentorship";
+import Profile from "./components/mainpage/profile/Profile";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
@@ -22,6 +23,7 @@ function App() {
 						<Routes>
 							<Route path="/board" element={<Board />} />
 							<Route path="/mentorship" element={<Mentorship />} />
+							<Route path="/profile" element={<Profile />} />
 						</Routes>
 					</Grid>
 				</Grid>

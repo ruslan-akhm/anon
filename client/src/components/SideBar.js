@@ -55,6 +55,27 @@ function SideBar(props) {
 					</Button>
 				</Link>
 			</Grid>
+			<Grid item sx={{ mt: "auto" }}>
+				<Link
+					to="/profile"
+					style={{ textDecoration: "none", width: "100%", height: "100%" }}
+				>
+					<Button
+						sx={{
+							borderBottom: `1px solid ${theme.palette.sidebar.hover}`,
+							padding: 1,
+							textDecoration: "none",
+							color: theme.palette.sidebar.text,
+							transition: "0.2s",
+							width: "100%",
+							height: "100%",
+							"&:hover": { backgroundColor: theme.palette.sidebar.hover },
+						}}
+					>
+						PROFILE
+					</Button>
+				</Link>
+			</Grid>
 		</Grid>
 	);
 }
