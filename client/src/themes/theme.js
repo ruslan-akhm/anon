@@ -8,7 +8,7 @@ export const theme = createTheme({
 	},
 
 	palette: {
-		sidebar: { main: "#232F3E", hover: "#131921", text: "#f0f1f5" },
+		sidebar: { main: "#232F3E", hover: "#131921", text: "#F9FBFF" },
 		info: { main: "#fff" },
 		green: { main: "#2E7D32", hover: "#1e5421" },
 		// alert: { main: "#CD0000" },

@@ -5,10 +5,14 @@ import { Link } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 
+import { useLocation } from "react-router-dom";
+
 function SideBar(props) {
+	const location = useLocation();
 	const theme = useTheme();
 
 	const buttonStyle = {
+		borderRadius: "0",
 		fontWeight: "bold",
 		fontSize: "20px",
 		justifyContent: "flex-start",
@@ -22,6 +26,16 @@ function SideBar(props) {
 		height: "100%",
 		"&:hover": { backgroundColor: theme.palette.sidebar.hover },
 	};
+
+	const activeButtonStyle = {
+		backgroundColor: theme.palette.sidebar.text,
+		color: theme.palette.sidebar.hover,
+		"&:hover": {
+			backgroundColor: theme.palette.sidebar.text,
+			color: theme.palette.sidebar.hover,
+		},
+	};
+
 	return (
 		<Grid
 			container
@@ -36,7 +50,14 @@ function SideBar(props) {
 					to="/board"
 					style={{ textDecoration: "none", width: "100%", height: "100%" }}
 				>
-					<Button sx={buttonStyle}>Board</Button>
+					<Button
+						sx={[
+							buttonStyle,
+							location.pathname == "/board" ? activeButtonStyle : null,
+						]}
+					>
+						Board
+					</Button>
 				</Link>
 			</Grid>
 			<Grid item>
@@ -44,7 +65,14 @@ function SideBar(props) {
 					to="/mentorship"
 					style={{ textDecoration: "none", width: "100%", height: "100%" }}
 				>
-					<Button sx={buttonStyle}>Mentorship</Button>
+					<Button
+						sx={[
+							buttonStyle,
+							location.pathname == "/mentorship" ? activeButtonStyle : null,
+						]}
+					>
+						Mentorship
+					</Button>
 				</Link>
 			</Grid>
 			<Grid item sx={{ mt: "auto" }}>
@@ -52,7 +80,13 @@ function SideBar(props) {
 					to="/settings"
 					style={{ textDecoration: "none", width: "100%", height: "100%" }}
 				>
-					<Button sx={buttonStyle} startIcon={<SettingsIcon />}>
+					<Button
+						sx={[
+							buttonStyle,
+							location.pathname == "/settings" ? activeButtonStyle : null,
+						]}
+						startIcon={<SettingsIcon />}
+					>
 						Settings
 					</Button>
 				</Link>

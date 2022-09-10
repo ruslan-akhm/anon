@@ -181,21 +181,9 @@ function Mentorship(props) {
 				lg={6}
 				xl={6}
 				key={index + m.id}
-				sx={{ px: 2, py: 2 }}
+				sx={{ px: 3, py: 3 }}
 			>
 				<Card>
-					{/* <CardMedia
-						component="img"
-						height="200"
-						image={m.picture}
-						alt="mentor picture"
-						sx={{
-							objectFit: "cover",
-							objectPosition: "center",
-							borderRadius: "50%",
-						}}
-					/> */}
-
 					<CardContent>
 						<Grid container item>
 							<Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
@@ -215,7 +203,7 @@ function Mentorship(props) {
 									gutterBottom
 									variant="h4"
 									component="div"
-									style={{ wordBreak: "break-word" }}
+									sx={{ wordBreak: "break-word", mb: 0 }}
 								>
 									{m.name}
 								</Typography>
@@ -226,15 +214,31 @@ function Mentorship(props) {
 								</Typography>
 							</Grid>
 						</Grid>
-						<Grid item sx={{ mt: 3, height: "20px" }}>
+						<Grid
+							item
+							sx={{
+								mt: 3,
+								height: "60px",
+							}}
+						>
 							<Typography
 								variant="body2"
 								sx={{
 									textOverflow: "ellipsis",
 									overflow: "hidden",
-									whiteSpace: "nowrap",
-									// height: "60px",
+									whiteSpace: "wrap",
+									height: "60px",
 									width: "auto",
+									position: "relative",
+									":after": {
+										content: "''",
+										position: "absolute",
+										top: "0",
+										bottom: "0",
+										left: "-15px",
+										right: "-15px",
+										boxShadow: "inset white 0 -14px 10px",
+									},
 								}}
 							>
 								{m.description}
