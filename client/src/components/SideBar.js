@@ -57,7 +57,7 @@ function SideBar(props) {
 			</Grid>
 			<Grid item sx={{ mt: "auto" }}>
 				<Link
-					to="/profile"
+					to="/settings"
 					style={{ textDecoration: "none", width: "100%", height: "100%" }}
 				>
 					<Button
@@ -72,7 +72,28 @@ function SideBar(props) {
 							"&:hover": { backgroundColor: theme.palette.sidebar.hover },
 						}}
 					>
-						PROFILE
+						SETTINGS
+					</Button>
+				</Link>
+			</Grid>
+			<Grid item>
+				<Link
+					to="*"
+					style={{ textDecoration: "none", width: "100%", height: "100%" }}
+				>
+					<Button
+						sx={{
+							borderBottom: `1px solid ${theme.palette.sidebar.hover}`,
+							padding: 1,
+							textDecoration: "none",
+							color: "red",
+							transition: "0.2s",
+							width: "100%",
+							height: "100%",
+							"&:hover": { backgroundColor: theme.palette.sidebar.hover },
+						}}
+					>
+						LOG OUT
 					</Button>
 				</Link>
 			</Grid>

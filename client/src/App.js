@@ -6,7 +6,7 @@ import Mentorship from "./components/mainpage/mentorship/Mentorship";
 import Profile from "./components/mainpage/profile/Profile";
 
 import { ThemeProvider } from "@mui/material/styles";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import { theme } from "./themes/theme";
 
@@ -23,7 +23,8 @@ function App() {
 						<Routes>
 							<Route path="/board" element={<Board />} />
 							<Route path="/mentorship" element={<Mentorship />} />
-							<Route path="/profile" element={<Profile />} />
+							<Route path="/settings" element={<Profile />} />
+							<Route path="*" element={<Navigate to="/board" replace />} />
 						</Routes>
 					</Grid>
 				</Grid>
