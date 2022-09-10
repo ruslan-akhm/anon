@@ -2,8 +2,26 @@ import React from "react";
 import { Grid, Button, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 function SideBar(props) {
 	const theme = useTheme();
+
+	const buttonStyle = {
+		fontWeight: "bold",
+		fontSize: "20px",
+		justifyContent: "flex-start",
+		borderBottom: `1px solid ${theme.palette.sidebar.hover}`,
+		padding: 1,
+		pl: 2,
+		textDecoration: "none",
+		color: theme.palette.sidebar.text,
+		transition: "0.2s",
+		width: "100%",
+		height: "100%",
+		"&:hover": { backgroundColor: theme.palette.sidebar.hover },
+	};
 	return (
 		<Grid
 			container
@@ -18,20 +36,7 @@ function SideBar(props) {
 					to="/board"
 					style={{ textDecoration: "none", width: "100%", height: "100%" }}
 				>
-					<Button
-						sx={{
-							borderBottom: `1px solid ${theme.palette.sidebar.hover}`,
-							padding: 1,
-							textDecoration: "none",
-							color: theme.palette.sidebar.text,
-							transition: "0.2s",
-							width: "100%",
-							height: "100%",
-							"&:hover": { backgroundColor: theme.palette.sidebar.hover },
-						}}
-					>
-						BOARD
-					</Button>
+					<Button sx={buttonStyle}>Board</Button>
 				</Link>
 			</Grid>
 			<Grid item>
@@ -39,20 +44,7 @@ function SideBar(props) {
 					to="/mentorship"
 					style={{ textDecoration: "none", width: "100%", height: "100%" }}
 				>
-					<Button
-						sx={{
-							borderBottom: `1px solid ${theme.palette.sidebar.hover}`,
-							padding: 1,
-							textDecoration: "none",
-							color: theme.palette.sidebar.text,
-							transition: "0.2s",
-							width: "100%",
-							height: "100%",
-							"&:hover": { backgroundColor: theme.palette.sidebar.hover },
-						}}
-					>
-						MENTORSHIP
-					</Button>
+					<Button sx={buttonStyle}>Mentorship</Button>
 				</Link>
 			</Grid>
 			<Grid item sx={{ mt: "auto" }}>
@@ -60,19 +52,8 @@ function SideBar(props) {
 					to="/settings"
 					style={{ textDecoration: "none", width: "100%", height: "100%" }}
 				>
-					<Button
-						sx={{
-							borderBottom: `1px solid ${theme.palette.sidebar.hover}`,
-							padding: 1,
-							textDecoration: "none",
-							color: theme.palette.sidebar.text,
-							transition: "0.2s",
-							width: "100%",
-							height: "100%",
-							"&:hover": { backgroundColor: theme.palette.sidebar.hover },
-						}}
-					>
-						SETTINGS
+					<Button sx={buttonStyle} startIcon={<SettingsIcon />}>
+						Settings
 					</Button>
 				</Link>
 			</Grid>
@@ -82,18 +63,10 @@ function SideBar(props) {
 					style={{ textDecoration: "none", width: "100%", height: "100%" }}
 				>
 					<Button
-						sx={{
-							borderBottom: `1px solid ${theme.palette.sidebar.hover}`,
-							padding: 1,
-							textDecoration: "none",
-							color: "red",
-							transition: "0.2s",
-							width: "100%",
-							height: "100%",
-							"&:hover": { backgroundColor: theme.palette.sidebar.hover },
-						}}
+						sx={{ ...buttonStyle, color: "red" }}
+						startIcon={<LogoutIcon />}
 					>
-						LOG OUT
+						Log Out
 					</Button>
 				</Link>
 			</Grid>
