@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
 
-function Mainpage(props) {
+function Board(props) {
 	return <Grid>TEST</Grid>;
 }
-export default Mainpage;
+export default Board;
