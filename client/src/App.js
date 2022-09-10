@@ -14,25 +14,11 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<BrowserRouter>
 				<Grid container sx={{ height: "100vh" }}>
-					<Grid
-						xs={2}
-						sm={2}
-						md={2}
-						lg={2}
-						xl={2}
-						sx={{ border: "2px solid black", height: "100%" }}
-					>
+					<Grid xs={2} sm={2} md={2} lg={2} xl={2} sx={{ height: "100%" }}>
 						<SideBar />
 					</Grid>
 
-					<Grid
-						xs={10}
-						sm={10}
-						md={10}
-						lg={10}
-						xl={10}
-						sx={{ border: "2px solid green", height: "100%" }}
-					>
+					<Grid xs={10} sm={10} md={10} lg={10} xl={10} sx={{ height: "100%" }}>
 						<Routes>
 							<Route path="/board" element={<Board />} />
 							<Route path="/mentorship" element={<Mentorship />} />
