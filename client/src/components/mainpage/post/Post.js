@@ -72,7 +72,6 @@ function Post(props) {
 			userId: user.id,
 			postId: currentId,
 		};
-		console.log(post);
 		let updatedPosts = [...dummyPosts];
 		updatedPosts = updatedPosts.map((p) => {
 			if (p.id == post.id) {

@@ -62,7 +62,7 @@ const NewTopicModal = ({ setModalShown }) => {
 	const theme = useTheme();
 	const { dummyPosts, setDummyPosts } = useContext(Context);
 	const [loading, setLoading] = useState(false);
-	const [categoriesList, setCategoriesList] = useState([]);
+	const [categoriesList, setCategoriesList] = useState("");
 	const [hashtagInput, setHastagInput] = useState([]);
 	const [title, setTitle] = useState("");
 
@@ -115,11 +115,9 @@ const NewTopicModal = ({ setModalShown }) => {
 				[e.target.name]: e.target.value,
 			});
 		}
-		console.log(e.target.name);
 	};
 
 	const removeHashtag = (hash) => {
-		console.log(hash);
 		let updatedHashtags = [...userInput.hashtags].filter((h) => {
 			return h != hash;
 		});
@@ -127,8 +125,6 @@ const NewTopicModal = ({ setModalShown }) => {
 	};
 
 	const handleSubmit = () => {
-		console.log(categoriesList);
-		console.log(userInput);
 		const ids = dummyPosts.map((p) => p.id);
 		const newPost = {
 			id: Math.max(...ids) + 1,
@@ -138,9 +134,8 @@ const NewTopicModal = ({ setModalShown }) => {
 			comments: 0,
 			date: "Just now",
 			hashtags: [...userInput.hashtags],
-			category: categoriesList[0],
+			category: categoriesList,
 		};
-		console.log(newPost);
 		setDummyPosts([newPost, ...dummyPosts]);
 		setModalShown(false);
 		// createPost({...userInput, categories: categoriesList[0]})
@@ -160,13 +155,12 @@ const NewTopicModal = ({ setModalShown }) => {
 				Post a New Question
 			</Typography>
 			<DialogContent>
-				<Grid direction="column">
+				<Grid container direction="column">
 					<TextField
 						variant="outlined"
 						sx={{ width: "100%", mb: 3 }}
 						placeholder="Title of your topic"
 						name="title"
-						defaultValue=""
 						onChange={updateInput}
 					/>
 					<Grid item container sx={{ width: "100%", mb: 3 }}>
@@ -176,6 +170,7 @@ const NewTopicModal = ({ setModalShown }) => {
 								onChange={handleChange}
 								select // tell TextField to render select
 								label="Category"
+								defaultValue=""
 								sx={{
 									width: "100%",
 									"&::label": {
