@@ -9,6 +9,7 @@ import {
 	IconButton,
 	CircularProgress,
 	useTheme,
+	TextField,
 } from "@mui/material";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -16,6 +17,8 @@ import CloseIcon from "@mui/icons-material/Close";
 const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 	const theme = useTheme();
 	const [loading, setLoading] = useState(false);
+	const [nameMissing, setNameMissing] = useState(false);
+	const [textInput, setTextInput] = useState("");
 
 	useEffect(() => {
 		if (loading) {
@@ -27,7 +30,18 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 		}
 	}, [loading]);
 
+	const handleChange = (e) => {
+		if (nameMissing) {
+			setNameMissing(false);
+		}
+		setTextInput(e.target.value);
+	};
+
 	const handleSubmit = async () => {
+		if (!textInput || textInput.trim().length < 1) {
+			setNameMissing(true);
+			return;
+		}
 		setLoading(true);
 	};
 
@@ -77,25 +91,42 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 				</Grid>
 			</DialogContent>
 			<DialogActions sx={{ px: 2 }}>
-				<Button
-					variant="contained"
-					sx={{
-						width: "100%",
-						backgroundColor: theme.palette.green.main,
-						color: theme.palette.sidebar.text,
-						margin: "auto",
-						"&:hover": {
-							backgroundColor: theme.palette.green.hover,
-						},
-					}}
-					onClick={handleSubmit}
-				>
-					{loading ? (
-						<CircularProgress size={24} sx={{ color: "white" }} />
-					) : (
-						"Request"
-					)}
-				</Button>
+				<Grid sx={{ width: "100%" }}>
+					<TextField
+						id="input-mentor"
+						variant="outlined"
+						placeholder="Provide your name"
+						error={nameMissing}
+						label={nameMissing ? "Please provide your full name" : ""}
+						sx={{
+							width: "100%",
+						}}
+						onChange={handleChange}
+						value={textInput}
+					/>
+					<Typography sx={{ mb: 3, fontSize: "12px" }}>
+						* Your Anon ID will not be revealed to the mentor
+					</Typography>
+					<Button
+						variant="contained"
+						sx={{
+							width: "100%",
+							backgroundColor: theme.palette.green.main,
+							color: theme.palette.sidebar.text,
+							margin: "auto",
+							"&:hover": {
+								backgroundColor: theme.palette.green.hover,
+							},
+						}}
+						onClick={handleSubmit}
+					>
+						{loading ? (
+							<CircularProgress size={24} sx={{ color: "white" }} />
+						) : (
+							"Request"
+						)}
+					</Button>
+				</Grid>
 			</DialogActions>
 		</Box>
 	);
