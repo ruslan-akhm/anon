@@ -45,41 +45,42 @@ const categories = [
 	},
 ];
 
-const dummyPosts = [
-	{
-		id: 1,
-		title: "AC is too cold!",
-		text: "Has anyone noticed how cold the AC is set up on the third floor? It's blowing a freezing cold air!",
-		likes: 3,
-		comments: 2,
-		date: "1 day ago",
-		hashtags: ["discomfort", "rationaleActionNeeded"],
-		category: "Issues and Concerns",
-	},
-	{
-		id: 2,
-		title: "Promotion???",
-		text: "I've been with the company for couple years now. I have been working hard, but I was never spoken to about a possible promotion. I see company just hires upper managers, when they could promote people who already contributed a lot of their time and energy into doing the work. I do not want to believe this is because I am a minority, but why else? This is unfair.",
-		likes: 6,
-		comments: 4,
-		date: "3 days ago",
-		hashtags: ["unfair", "racism"],
-		category: "Issues and Concerns",
-	},
-	{
-		id: 3,
-		title: "When is the next company event?",
-		text: "Hey team, when is our next event gonna be? Last thing we had was over 6 month ago. I would love to meet everybody on some cool activity. Laser tag or Axe throwing anyone?",
-		likes: 11,
-		comments: 1,
-		date: "7 days ago",
-		hashtags: ["events"],
-		category: "General Topic",
-	},
-];
+// const dummyPosts = [
+// 	{
+// 		id: 1,
+// 		title: "AC is too cold!",
+// 		text: "Has anyone noticed how cold the AC is set up on the third floor? It's blowing a freezing cold air!",
+// 		likes: 3,
+// 		comments: 2,
+// 		date: "1 day ago",
+// 		hashtags: ["discomfort", "rationaleActionNeeded"],
+// 		category: "Issues and Concerns",
+// 	},
+// 	{
+// 		id: 2,
+// 		title: "Promotion???",
+// 		text: "I've been with the company for couple years now. I have been working hard, but I was never spoken to about a possible promotion. I see company just hires upper managers, when they could promote people who already contributed a lot of their time and energy into doing the work. I do not want to believe this is because I am a minority, but why else? This is unfair.",
+// 		likes: 6,
+// 		comments: 4,
+// 		date: "3 days ago",
+// 		hashtags: ["unfair", "racism"],
+// 		category: "Issues and Concerns",
+// 	},
+// 	{
+// 		id: 3,
+// 		title: "When is the next company event?",
+// 		text: "Hey team, when is our next event gonna be? Last thing we had was over 6 month ago. I would love to meet everybody on some cool activity. Laser tag or Axe throwing anyone?",
+// 		likes: 11,
+// 		comments: 1,
+// 		date: "7 days ago",
+// 		hashtags: ["events"],
+// 		category: "General Topic",
+// 	},
+// ];
 
 function Board(props) {
 	const theme = useTheme();
+	const { dummyPosts } = useContext(Context);
 	const [category, setCategory] = useState("");
 	const [filters, setFilters] = useState({ hashtag: "", category: "" });
 	//hook for the post title

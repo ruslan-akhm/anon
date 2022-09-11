@@ -23,55 +23,27 @@ import { Context } from "../../../context/Context";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ChatIcon from "@mui/icons-material/Chat";
-
-const dummyPosts = [
-	{
-		id: 1,
-		title: "AC is too cold!",
-		text: "Has anyone noticed how cold the AC is set up on the third floor? It's blowing a freezing cold air!",
-		likes: 3,
-		comments: 2,
-		date: "1 day ago",
-		hashtags: ["discomfort", "rationaleActionNeeded"],
-		category: "Issues and Concerns",
-	},
-	{
-		id: 2,
-		title: "Promotion???",
-		text: "I've been with the company for couple years now. I have been working hard, but I was never spoken to about a possible promotion. I see company just hires upper managers, when they could promote people who already contributed a lot of their time and energy into doing the work. I do not want to believe this is because I am a minority, but why else? This is unfair.",
-		likes: 6,
-		comments: 4,
-		date: "3 days ago",
-		hashtags: ["unfair", "racism"],
-		category: "Issues and Concerns",
-	},
-	{
-		id: 3,
-		title: "When is the next company event?",
-		text: "Hey team, when is our next event gonna be? Last thing we had was over 6 month ago. I would love to meet everybody on some cool activity. Laser tag or Axe throwing anyone?",
-		likes: 11,
-		comments: 1,
-		date: "7 days ago",
-		hashtags: ["events"],
-		category: "General Topic",
-	},
-];
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Post(props) {
 	const theme = useTheme();
 	const location = useLocation();
-	console.log(location);
+	const { dummyPosts, dummyComments, dummyUsers } = useContext(Context);
 	const [post, setPost] = useState({});
+	const [comments, setComments] = useState([]);
 
 	useEffect(() => {
-		console.log(location);
 		const pathnameArr = location.pathname.split("/");
 		const currentId = pathnameArr[pathnameArr.length - 1];
 		let actedPost = dummyPosts.filter((p) => {
-			console.log(p.id, currentId);
 			return p.id == currentId;
 		});
 		setPost(actedPost[0]);
+
+		const actedComments = dummyComments.filter((c) => {
+			return c.postId == currentId;
+		});
+		setComments([...actedComments]);
 	}, []);
 
 	return (
@@ -227,20 +199,69 @@ function Post(props) {
 					</Card>
 				)}
 			</Grid>
-			<Grid item container>
-				{/* <Grid
-					item
-					container
-					direction="row"
-					sx={{
-						width: "fit-content",
-						mr: 2,
-					}}
-				>
-					<ChatIcon sx={{ mr: 0.5, color: "gray" }} />
-					<Typography sx={{ color: "gray" }}>{post.comments}</Typography>
-				</Grid> */}
-				COMMENST HERE
+			<Grid item container sx={{ px: 5, pt: 2 }}>
+				<Grid item container>
+					<TextField
+						sx={{ backgroundColor: "white", width: "100%" }}
+						placeholder="Share your opinion..."
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position="end">
+									<Button
+										type="submit"
+										variant="contained"
+										sx={{
+											boxShadow: "none",
+											height: "50px",
+											mr: "-10px",
+											backgroundColor: theme.palette.darkblue.main,
+											"&:hover": {
+												backgroundColor: theme.palette.lightblack.main,
+											},
+										}}
+										name="hashtags"
+										//onClick={updateInput}
+									>
+										Comment
+									</Button>
+								</InputAdornment>
+							),
+						}}
+					/>
+				</Grid>
+				<Grid item container sx={{ mt: 2 }} direction="column">
+					{comments.map((c) => {
+						let user = dummyUsers.filter((u) => u.id == c.userId);
+
+						return (
+							<Grid
+								key={c.text}
+								sx={{ my: 1 }}
+								container
+								item
+								direction="column"
+							>
+								<Grid container item direction="row" alignItems="center">
+									<AccountCircleIcon sx={{ fontSize: "34px", color: "gray" }} />
+									<Typography sx={{ ml: 1, fontWeight: "bold" }}>
+										{user[0].username}
+									</Typography>
+									<Typography sx={{ color: "gray", ml: 2 }}>
+										{c.date}
+									</Typography>
+								</Grid>
+								<Grid item sx={{ px: 2 }}>
+									{" "}
+									<Typography
+										sx={{ borderLeft: "1px solid gray", px: 4, py: 1 }}
+									>
+										{c.text}
+									</Typography>
+								</Grid>
+							</Grid>
+						);
+					})}
+				</Grid>
 			</Grid>
 		</Grid>
 	);
