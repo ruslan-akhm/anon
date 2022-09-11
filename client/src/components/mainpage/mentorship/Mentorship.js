@@ -8,8 +8,6 @@ import {
 	Button,
 	Typography,
 	Dialog,
-	DialogContent,
-	DialogActions,
 	Box,
 	IconButton,
 	CircularProgress,
@@ -17,6 +15,8 @@ import {
 	Alert,
 	Slide,
 } from "@mui/material";
+
+import MentorDialog from "./MentorDialog";
 
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -54,94 +54,6 @@ const mentors = [
 	},
 ];
 
-const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
-	const theme = useTheme();
-	const [loading, setLoading] = useState(false);
-
-	useEffect(() => {
-		if (loading) {
-			setTimeout(() => {
-				setLoading(false);
-				setModalShown(false);
-				setMentorApproved(true);
-			}, 500);
-		}
-	}, [loading]);
-
-	const handleSubmit = async () => {
-		setLoading(true);
-	};
-
-	return (
-		<Box sx={{ px: 2, py: 2, position: "relative" }}>
-			{/* <Grid container direction="row" justifyContent="flex-end"> */}
-			<IconButton
-				onClick={() => setModalShown(false)}
-				sx={{ position: "absolute", top: "10px", right: "10px" }}
-			>
-				<CloseIcon />
-			</IconButton>
-			{/* </Grid> */}
-			<DialogContent>
-				<Grid direction="column">
-					<Grid container direction="row" style={{ width: "100%" }}>
-						<Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
-							<img
-								src={mentor.picture}
-								style={{ width: "200px", height: "200px", borderRadius: "50%" }}
-							/>
-						</Grid>
-						<Grid
-							item
-							xs={9}
-							sm={9}
-							md={9}
-							lg={9}
-							xl={9}
-							container
-							direction="column"
-							sx={{ pl: 5 }}
-						>
-							<Typography variant="h3">{mentor.name}</Typography>
-							<Typography variant="h5" sx={{ color: "gray" }}>
-								{mentor.title}
-							</Typography>
-							{/* <Typography variant="h6">
-								Seniority: {mentor.experienceLevel}
-							</Typography>
-							<Typography variant="h6">
-								Department: {mentor.department}
-							</Typography> */}
-						</Grid>
-					</Grid>
-					<Typography sx={{ mt: 3 }}>{mentor.description}</Typography>
-				</Grid>
-			</DialogContent>
-			<DialogActions>
-				<Button
-					variant="contained"
-					sx={{
-						width: "100%",
-						backgroundColor: theme.palette.green.main,
-						color: theme.palette.sidebar.text,
-						margin: "auto",
-						"&:hover": {
-							backgroundColor: theme.palette.green.hover,
-						},
-					}}
-					onClick={handleSubmit}
-				>
-					{loading ? (
-						<CircularProgress size={24} sx={{ color: "white" }} />
-					) : (
-						"Request"
-					)}
-				</Button>
-			</DialogActions>
-		</Box>
-	);
-};
-
 function Mentorship(props) {
 	const theme = useTheme();
 	const [mentorsList, setMentorsList] = useState([]);
@@ -167,7 +79,6 @@ function Mentorship(props) {
 	};
 
 	const handleClick = (mentor) => {
-		// console.log(mentor);
 		setModalShown(true);
 		setChosenMentor(mentor);
 	};
@@ -269,7 +180,7 @@ function Mentorship(props) {
 
 	return (
 		<Grid container direction="column">
-			<Box sx={{ px: 2, py: 2 }}>
+			<Box sx={{ px: 3, py: 2 }}>
 				<Typography variant="h3">
 					Supercharge your Career with a Mentor
 				</Typography>
@@ -291,7 +202,7 @@ function Mentorship(props) {
 				<Box
 					sx={{
 						position: "absolute",
-						bottom: " 20px",
+						top: " 20px",
 						left: "0",
 						right: "0",
 						marginLeft: "auto",
@@ -301,14 +212,14 @@ function Mentorship(props) {
 				>
 					<Slide
 						variant="filled"
-						direction="up"
+						direction="down"
 						in={mentorApproved}
 						mountOnEnter
 						unmountOnExit
 					>
 						<Alert
 							severity="success"
-							sx={{ alignItems: "center", backgroundColor: "#FF8686" }}
+							sx={{ alignItems: "center" }} //backgroundColor: "#FF8686" }}
 						>
 							Mentorship requested was sent!{" "}
 							<IconButton

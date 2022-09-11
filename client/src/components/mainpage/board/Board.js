@@ -96,6 +96,7 @@ function Board(props) {
 				onClose={() => setModalShown(false)}
 				fullWidth={true}
 				maxWidth={"md"}
+				scroll="body"
 			>
 				<NewTopicModal setModalShown={setModalShown} />
 			</Dialog>
