@@ -76,7 +76,7 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 					<Typography sx={{ mt: 3 }}>{mentor.description}</Typography>
 				</Grid>
 			</DialogContent>
-			<DialogActions>
+			<DialogActions sx={{ px: 2 }}>
 				<Button
 					variant="contained"
 					sx={{
