@@ -137,21 +137,19 @@ function Board(props) {
       >
         <NewTopicModal setModalShown={setModalShown} />
       </Dialog>
+      
       <Grid sx={{ px: 2, py: 2, display: "flex", flexDirection: "row"}}>
         {postLists.map((post) => {
           return (
             <div>
               <h1>{post.title}</h1>
-
               <Box sx={{ display: "flex", flexDirection: "row" }}>
                 <Fab variant="extended" color="secondary">
                   Issues/Concerns
                 </Fab>
                 <p>{post.date}</p>
               </Box>
-
               <p>{post.description}</p>
-
               <Box sx={{ display: "flex", flexDirection: "row" }}>
                 <a href="https://github.com/">{post.orientation}</a>
                 <a href="https://github.com/">{post.mothers}</a>
