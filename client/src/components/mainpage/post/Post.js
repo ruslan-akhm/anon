@@ -16,6 +16,7 @@ import {
 	Icon,
 	Card,
 	useTheme,
+	IconButton,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { Context } from "../../../context/Context";
@@ -84,6 +85,18 @@ function Post(props) {
 		setDummyComments([newComment, ...dummyComments]);
 		/* Update current state */
 		setComments([newComment, ...comments]);
+	};
+
+	const likePost = () => {
+		setPost({ ...post, likedByUser: true, likes: post.likes + 1 });
+		let updatedPosts = [...dummyPosts];
+		updatedPosts = updatedPosts.map((p) => {
+			if (p.id == post.id) {
+				p.likedByUser = true;
+				p.likes++;
+			}
+			return p;
+		});
 	};
 
 	return (
@@ -229,8 +242,18 @@ function Post(props) {
 										sx={{
 											width: "fit-content",
 										}}
+										alignItems="center"
 									>
-										<ThumbUpIcon sx={{ mr: 0.5, color: "gray" }} />
+										<IconButton onClick={likePost}>
+											<ThumbUpIcon
+												sx={{
+													mr: 0.5,
+													color: post.likedByUser
+														? theme.palette.darkblue.main
+														: "gray",
+												}}
+											/>
+										</IconButton>
 										<Typography sx={{ color: "gray" }}>{post.likes}</Typography>
 									</Grid>
 								</Grid>

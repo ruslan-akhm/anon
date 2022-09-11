@@ -12,6 +12,7 @@ const dummyData = [
 		date: "1 day ago",
 		hashtags: ["discomfort", "rationaleActionNeeded"],
 		category: "Issues and Concerns",
+		likedByUser: false,
 	},
 	{
 		id: 2,
@@ -22,6 +23,7 @@ const dummyData = [
 		date: "3 days ago",
 		hashtags: ["unfair", "racism"],
 		category: "Issues and Concerns",
+		likedByUser: false,
 	},
 	{
 		id: 1,
@@ -32,6 +34,7 @@ const dummyData = [
 		date: "7 days ago",
 		hashtags: ["events"],
 		category: "General Topic",
+		likedByUser: false,
 	},
 ];
 
