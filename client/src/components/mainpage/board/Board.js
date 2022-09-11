@@ -150,15 +150,14 @@ function Board(props) {
 								</Fab>
 								<p>{post.date}</p>
 							</Box>
-							<p>{post.description}</p>
+							<p>{post.text}</p>
 							<Box sx={{ display: "flex", flexDirection: "row" }}>
-								<a href="https://github.com/">{post.orientation}</a>
-								<a href="https://github.com/">{post.mothers}</a>
+								<a href="https://github.com/">{post.hashtags}</a>
 								<Box sx={{ display: "flex", flexDirection: "row" }}>
 									<CommentIcon />
-									<p>{post.counter}</p>
+									<p>{post.comments}</p>
 									<ThumbUpIcon />
-									<p>{post.secondCounter}</p>
+									<p>{post.likes}</p>
 								</Box>
 							</Box>
 						</div>
