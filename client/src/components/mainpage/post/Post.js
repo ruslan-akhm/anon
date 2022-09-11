@@ -65,7 +65,7 @@ function Post(props) {
 
 		const commentsIds = dummyComments.map((c) => c.id);
 		const newComment = {
-			id: Math.max(...commentsIds),
+			id: Math.max(...commentsIds) + 1,
 			date: " Just now",
 			text: textInput.trim(),
 			userId: user.id,
