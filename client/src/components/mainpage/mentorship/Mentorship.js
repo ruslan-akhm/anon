@@ -86,6 +86,8 @@ function Mentorship(props) {
 	const mentorsCards = mentorsList.map((m, index) => {
 		return (
 			<Grid
+				container
+				item
 				xs={6}
 				sm={6}
 				md={6}
@@ -97,7 +99,7 @@ function Mentorship(props) {
 				<Card>
 					<CardContent>
 						<Grid container item>
-							<Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+							<Grid container item xs={4} sm={4} md={4} lg={4} xl={4}>
 								<img
 									src={m.picture}
 									style={{
@@ -109,7 +111,16 @@ function Mentorship(props) {
 									}}
 								/>
 							</Grid>
-							<Grid item direction="column" xs={8} sm={8} md={8} lg={8} xl={8}>
+							<Grid
+								item
+								container
+								direction="column"
+								xs={8}
+								sm={8}
+								md={8}
+								lg={8}
+								xl={8}
+							>
 								<Typography
 									gutterBottom
 									variant="h4"

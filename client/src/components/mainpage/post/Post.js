@@ -67,12 +67,11 @@ function Post(props) {
 		const commentsIds = dummyComments.map((c) => c.id);
 		const newComment = {
 			id: Math.max(...commentsIds) + 1,
-			date: " Just now",
+			date: "Just now",
 			text: textInput.trim(),
 			userId: user.id,
 			postId: currentId,
 		};
-		console.log(post);
 		let updatedPosts = [...dummyPosts];
 		updatedPosts = updatedPosts.map((p) => {
 			if (p.id == post.id) {
@@ -88,15 +87,27 @@ function Post(props) {
 	};
 
 	const likePost = () => {
-		setPost({ ...post, likedByUser: true, likes: post.likes + 1 });
 		let updatedPosts = [...dummyPosts];
-		updatedPosts = updatedPosts.map((p) => {
-			if (p.id == post.id) {
-				p.likedByUser = true;
-				p.likes++;
-			}
-			return p;
-		});
+		if (post.likedByUser) {
+			setPost({ ...post, likedByUser: false, likes: post.likes - 1 });
+			updatedPosts = updatedPosts.map((p) => {
+				if (p.id == post.id) {
+					p.likedByUser = false;
+					p.likes--;
+				}
+				return p;
+			});
+		} else {
+			setPost({ ...post, likedByUser: true, likes: post.likes + 1 });
+			updatedPosts = updatedPosts.map((p) => {
+				if (p.id == post.id) {
+					p.likedByUser = true;
+					p.likes++;
+				}
+				return p;
+			});
+		}
+		setDummyPosts(updatedPosts);
 	};
 
 	return (
@@ -208,9 +219,10 @@ function Post(props) {
 										width: "fit-content",
 									}}
 								>
-									{post.hashtags.map((h) => {
+									{post.hashtags.map((h, index) => {
 										return (
 											<Typography
+												key={index + h}
 												sx={{
 													color: theme.palette.darkblue.main,
 													mr: 0.5,

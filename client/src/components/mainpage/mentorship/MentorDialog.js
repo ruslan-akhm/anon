@@ -42,9 +42,9 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 			</IconButton>
 			{/* </Grid> */}
 			<DialogContent>
-				<Grid direction="column">
-					<Grid container direction="row" style={{ width: "100%" }}>
-						<Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
+				<Grid container direction="column">
+					<Grid container item direction="row" style={{ width: "100%" }}>
+						<Grid item container xs={3} sm={3} md={3} lg={3} xl={3}>
 							<img
 								src={mentor.picture}
 								style={{ width: "200px", height: "200px", borderRadius: "50%" }}
@@ -52,12 +52,12 @@ const MentorDialog = ({ mentor, setModalShown, setMentorApproved }) => {
 						</Grid>
 						<Grid
 							item
+							container
 							xs={9}
 							sm={9}
 							md={9}
 							lg={9}
 							xl={9}
-							container
 							direction="column"
 							sx={{ pl: 5 }}
 						>

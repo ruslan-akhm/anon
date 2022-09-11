@@ -378,9 +378,10 @@ function Board(props) {
 													width: "fit-content",
 												}}
 											>
-												{post.hashtags.map((h) => {
+												{post.hashtags.map((h, index) => {
 													return (
 														<Typography
+															key={h + index}
 															sx={{
 																color: theme.palette.darkblue.main,
 																mr: 0.5,

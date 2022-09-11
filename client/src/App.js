@@ -15,10 +15,28 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<Grid container sx={{ height: "100vh" }}>
-				<Grid xs={2} sm={2} md={2} lg={2} xl={2} sx={{ height: "100%" }}>
+				<Grid
+					item
+					container
+					xs={2}
+					sm={2}
+					md={2}
+					lg={2}
+					xl={2}
+					sx={{ height: "100%" }}
+				>
 					<SideBar />
 				</Grid>
-				<Grid xs={10} sm={10} md={10} lg={10} xl={10} sx={{ height: "100%" }}>
+				<Grid
+					item
+					container
+					xs={10}
+					sm={10}
+					md={10}
+					lg={10}
+					xl={10}
+					sx={{ height: "100%" }}
+				>
 					<Routes>
 						<Route path="/board" element={<Board />} />
 						<Route path="/post/:id" element={<Post />} />
