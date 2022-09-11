@@ -28,6 +28,7 @@ function SideBar(props) {
 	};
 
 	const activeButtonStyle = {
+		boxShadow: "-3px 0px 8px -4px rgba(35,47,62,0.75) inset",
 		backgroundColor: theme.palette.sidebar.text,
 		color: theme.palette.sidebar.hover,
 		"&:hover": {

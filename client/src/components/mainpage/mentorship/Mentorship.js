@@ -179,7 +179,11 @@ function Mentorship(props) {
 	});
 
 	return (
-		<Grid container direction="column">
+		<Grid
+			container
+			direction="column"
+			sx={{ backgroundColor: theme.palette.background.main }}
+		>
 			<Box sx={{ px: 3, py: 2 }}>
 				<Typography variant="h3">
 					Supercharge your Career with a Mentor
