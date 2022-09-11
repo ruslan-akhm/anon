@@ -11,6 +11,7 @@ export const theme = createTheme({
 		sidebar: { main: "#232F3E", hover: "#131921", text: "#F9FBFF" },
 		info: { main: "#fff" },
 		green: { main: "#2E7D32", hover: "#1e5421" },
+		darkblue: { main: "#0349A6" },
 		// alert: { main: "#CD0000" },
 		// green: { main: "#2B8737" },
 		// greyscale70: { main: "#4D4D4D" },
