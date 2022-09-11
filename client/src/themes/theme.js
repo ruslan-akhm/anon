@@ -2,16 +2,15 @@ import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
 	typography: {
-		// color: "#1A1A1A",
-		// fontFamily: '"Raleway", "Open Sans", "Arial", sans-serif', // specifying a new font
-		// button: {
-		// 	fontFamily: '"Raleway", "Open Sans", "Arial", sans-serif',
-		// 	textTransform: "none",
-		// },
+		button: {
+			textTransform: "none",
+		},
 	},
+
 	palette: {
-		sidebar: { main: "#3c414a", hover: "#30333b", text: "#f0f1f5" },
+		sidebar: { main: "#232F3E", hover: "#131921", text: "#F9FBFF" },
 		info: { main: "#fff" },
+		green: { main: "#2E7D32", hover: "#1e5421" },
 		// alert: { main: "#CD0000" },
 		// green: { main: "#2B8737" },
 		// greyscale70: { main: "#4D4D4D" },

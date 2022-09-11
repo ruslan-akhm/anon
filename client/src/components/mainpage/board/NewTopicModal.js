@@ -16,6 +16,7 @@ import {
 	useTheme,
 	Alert,
 	Slide,
+	TextField,
 } from "@mui/material";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "./firebase-config";
@@ -43,7 +44,25 @@ const NewTopicModal = ({ setModalShown }) => {
 				</IconButton>
 			</Grid>
 			<DialogContent>
-				<Grid direction="column"></Grid>
+				<Grid direction="column">
+					<TextField
+						variant="outlined"
+						sx={{ width: "100%", mb: 3 }}
+						placeholder="Title of your topic"
+					/>
+					<TextField
+						variant="outlined"
+						sx={{ width: "100%", mb: 3 }}
+						multiline
+						maxRows={6}
+						rows={6}
+						placeholder="Tell us what's on your mind"
+					/>
+					<Grid item container sx={{ width: "100%", mb: 3 }}>
+						<Grid></Grid>
+					</Grid>
+					<TextField variant="outlined" placeholder="Add hashtags" />
+				</Grid>
 			</DialogContent>
 			<DialogActions>
 				<Button
