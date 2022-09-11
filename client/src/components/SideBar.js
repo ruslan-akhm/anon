@@ -44,6 +44,10 @@ function SideBar(props) {
 			sx={{
 				backgroundColor: theme.palette.sidebar.main,
 				height: "100vh",
+				width: "16.6vw",
+				position: "fixed",
+				top: "0",
+				left: "0",
 			}}
 		>
 			<Grid item>
