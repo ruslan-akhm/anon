@@ -62,13 +62,13 @@ const NewTopicModal = ({ setModalShown }) => {
 	const [loading, setLoading] = useState(false);
 	const [categoriesList, setCategoriesList] = useState([]);
 	const [hashtagInput, setHastagInput] = useState([]);
-	const [title, setTitle] = useState('');
-	
+	const [title, setTitle] = useState("");
+
 	const [userInput, setUserInput] = useState({
 		title: "",
 		hashtags: [],
 		text: "",
-		categories: '',
+		categories: "",
 	});
 	/* Firebase upload post */
 	const [postText, setPostText] = useState("");
@@ -82,7 +82,7 @@ const NewTopicModal = ({ setModalShown }) => {
 		// 	text: "",
 		// 	categorie: ""
 		// }
-		await addDoc(postsCollectionRef, {userInput});
+		//await addDoc(postsCollectionRef, { userInput });
 	};
 
 	const handleChange = (e) => {
@@ -124,12 +124,12 @@ const NewTopicModal = ({ setModalShown }) => {
 		setUserInput({ ...userInput, hashtags: [...updatedHashtags] });
 	};
 
-	// const handleSubmit = () => {
-	// 	console.log(categoriesList);
-	// 	console.log(userInput);
-	// 	// createPost({...userInput, categories: categoriesList[0]})
-	// 	// return;
-	// };
+	const handleSubmit = () => {
+		console.log(categoriesList);
+		console.log(userInput);
+		// createPost({...userInput, categories: categoriesList[0]})
+		// return;
+	};
 
 	return (
 		<Box sx={{ px: 2, py: 2, position: "relative" }}>
@@ -278,7 +278,7 @@ const NewTopicModal = ({ setModalShown }) => {
 							backgroundColor: theme.palette.green.hover,
 						},
 					}}
-					onClick={createPost}
+					onClick={handleSubmit} //{createPost}
 				>
 					{loading ? (
 						<CircularProgress size={24} sx={{ color: "white" }} />

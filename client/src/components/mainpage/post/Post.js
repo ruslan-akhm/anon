@@ -28,13 +28,21 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 function Post(props) {
 	const theme = useTheme();
 	const location = useLocation();
-	const { dummyPosts, dummyComments, dummyUsers } = useContext(Context);
+	const pathnameArr = location.pathname.split("/");
+	const currentId = pathnameArr[pathnameArr.length - 1];
+	const {
+		dummyPosts,
+		setDummyPosts,
+		dummyComments,
+		setDummyComments,
+		dummyUsers,
+		user,
+	} = useContext(Context);
 	const [post, setPost] = useState({});
 	const [comments, setComments] = useState([]);
+	const [textInput, setTextInput] = useState("");
 
 	useEffect(() => {
-		const pathnameArr = location.pathname.split("/");
-		const currentId = pathnameArr[pathnameArr.length - 1];
 		let actedPost = dummyPosts.filter((p) => {
 			return p.id == currentId;
 		});
@@ -45,6 +53,38 @@ function Post(props) {
 		});
 		setComments([...actedComments]);
 	}, []);
+
+	const handleChange = (e) => {
+		setTextInput(e.target.value);
+	};
+
+	const addComment = () => {
+		if (!textInput || textInput.length < 0) {
+			return;
+		}
+
+		const commentsIds = dummyComments.map((c) => c.id);
+		const newComment = {
+			id: Math.max(...commentsIds),
+			date: " Just now",
+			text: textInput.trim(),
+			userId: user.id,
+			postId: currentId,
+		};
+		console.log(post);
+		let updatedPosts = [...dummyPosts];
+		updatedPosts = updatedPosts.map((p) => {
+			if (p.id == post.id) {
+				p.comments++;
+			}
+			return p;
+		});
+		/* Update context */
+		setDummyPosts([...updatedPosts]);
+		setDummyComments([newComment, ...dummyComments]);
+		/* Update current state */
+		setComments([newComment, ...comments]);
+	};
 
 	return (
 		<Grid
@@ -202,6 +242,8 @@ function Post(props) {
 			<Grid item container sx={{ px: 5, pt: 2 }}>
 				<Grid item container>
 					<TextField
+						value={textInput}
+						onChange={handleChange}
 						sx={{ backgroundColor: "white", width: "100%" }}
 						placeholder="Share your opinion..."
 						InputProps={{
@@ -220,7 +262,7 @@ function Post(props) {
 											},
 										}}
 										name="hashtags"
-										//onClick={updateInput}
+										onClick={addComment}
 									>
 										Comment
 									</Button>
@@ -232,7 +274,6 @@ function Post(props) {
 				<Grid item container sx={{ mt: 2 }} direction="column">
 					{comments.map((c) => {
 						let user = dummyUsers.filter((u) => u.id == c.userId);
-
 						return (
 							<Grid
 								key={c.text}
