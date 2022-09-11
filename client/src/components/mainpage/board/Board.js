@@ -152,8 +152,7 @@ function Board(props) {
 							</Box>
 							<p>{post.description}</p>
 							<Box sx={{ display: "flex", flexDirection: "row" }}>
-								<a href="https://github.com/">{post.orientation}</a>
-								<a href="https://github.com/">{post.mothers}</a>
+								<a href="https://github.com/">{post.hashtags}</a>
 								<Box sx={{ display: "flex", flexDirection: "row" }}>
 									<CommentIcon />
 									<p>{post.counter}</p>
