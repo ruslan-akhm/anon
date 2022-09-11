@@ -4,6 +4,7 @@ import SideBar from "./components/SideBar";
 import Board from "./components/mainpage/board/Board";
 import Mentorship from "./components/mainpage/mentorship/Mentorship";
 import Profile from "./components/mainpage/profile/Profile";
+import Post from "./components/mainpage/post/Post";
 
 import { ThemeProvider } from "@mui/material/styles";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -20,6 +21,7 @@ function App() {
 				<Grid xs={10} sm={10} md={10} lg={10} xl={10} sx={{ height: "100%" }}>
 					<Routes>
 						<Route path="/board" element={<Board />} />
+						<Route path="/post/:id" element={<Post />} />
 						<Route path="/mentorship" element={<Mentorship />} />
 						<Route path="/settings" element={<Profile />} />
 						<Route path="*" element={<Navigate to="/board" replace />} />

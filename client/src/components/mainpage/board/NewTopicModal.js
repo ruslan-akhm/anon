@@ -150,6 +150,7 @@ const NewTopicModal = ({ setModalShown }) => {
 						sx={{ width: "100%", mb: 3 }}
 						placeholder="Title of your topic"
 						name="title"
+						defaultValue=""
 						onChange={updateInput}
 					/>
 					<Grid item container sx={{ width: "100%", mb: 3 }}>
