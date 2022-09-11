@@ -80,7 +80,7 @@ const NewTopicModal = ({ setModalShown }) => {
 		// 	text: "",
 		// 	categorie: ""
 		// }
-		await addDoc(postsCollectionRef, data);
+		await addDoc(postsCollectionRef, title, postText, hashtagInput, categoriesList);
 	};
 
 	const handleChange = (e) => {
@@ -125,8 +125,8 @@ const NewTopicModal = ({ setModalShown }) => {
 	const handleSubmit = () => {
 		console.log(categoriesList);
 		console.log(userInput);
-		// createPost({...userInput, categorie: categoriesList[0]})
-		return;
+		// createPost({...userInput, categories: categoriesList[0]})
+		// return;
 	};
 
 	return (

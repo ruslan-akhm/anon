@@ -155,9 +155,9 @@ function Board(props) {
 								<a href="https://github.com/">{post.hashtags}</a>
 								<Box sx={{ display: "flex", flexDirection: "row" }}>
 									<CommentIcon />
-									<p>{post.counter}</p>
+									<p>{post.comments}</p>
 									<ThumbUpIcon />
-									<p>{post.secondCounter}</p>
+									<p>{post.likes}</p>
 								</Box>
 							</Box>
 						</div>
