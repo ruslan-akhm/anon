@@ -84,12 +84,13 @@ function Board(props) {
 	const [category, setCategory] = useState("");
 	const [filters, setFilters] = useState({ hashtag: "", category: "" });
 	//hook for the post title
-	const [title, setTitle] = useState("");
+	//const [title, setTitle] = useState("");
 	//hook for the post text
-	const [postText, setPostText] = useState("");
+	//const [postText, setPostText] = useState("");
 	//state to display our boards onto the page in an array
 	const [postLists, setPostList] = useState([]);
 	const [modalShown, setModalShown] = useState(false);
+	const [hashInput, setHashInput] = useState("");
 
 	const currentDate = new Date();
 	const postDate = currentDate.toLocaleString("default", {
@@ -107,7 +108,7 @@ function Board(props) {
 		// };
 		// getPosts();
 		setPostList(dummyPosts);
-	}, []);
+	}, [dummyPosts]);
 
 	useEffect(() => {
 		if (filters.hashtag.length > 0 || filters.category.length > 0) {
@@ -144,6 +145,7 @@ function Board(props) {
 	// };
 
 	const handleHashtagFilter = (e) => {
+		setHashInput(e.target.value);
 		setFilters({ ...filters, hashtag: e.target.value });
 	};
 
@@ -180,6 +182,7 @@ function Board(props) {
 						placeholder="Search by hashtags"
 						sx={{ width: "100%" }}
 						onChange={handleHashtagFilter}
+						value={hashInput}
 						//label="TextField"
 						InputProps={{
 							startAdornment: (
@@ -212,19 +215,6 @@ function Board(props) {
 							</MenuItem>
 						))}
 					</TextField>
-					{/* <FormControl fullWidth sx={{ width: "120px", ml: 2 }}>
-						<Select
-							variant="outlined"
-							onChange={handleChange}
-							sx={{ outline: "none", border: "none" }}
-						>
-							{categories.map((category) => (
-								<MenuItem key={category.value} value={category.value}>
-									{category.text}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl> */}
 				</Grid>
 				<Grid
 					item
@@ -260,6 +250,7 @@ function Board(props) {
 							setPostList(dummyPosts);
 							setFilters({ hashtag: "", category: "" });
 							setCategory("");
+							setHashInput("");
 						}}
 					>
 						Clear filters

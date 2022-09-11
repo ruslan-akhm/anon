@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
 	Grid,
 	Card,
@@ -27,6 +27,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 import CloseIcon from "@mui/icons-material/Close";
+import { Context } from "../../../context/Context";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -59,6 +60,7 @@ const categories = [
 
 const NewTopicModal = ({ setModalShown }) => {
 	const theme = useTheme();
+	const { dummyPosts, setDummyPosts } = useContext(Context);
 	const [loading, setLoading] = useState(false);
 	const [categoriesList, setCategoriesList] = useState([]);
 	const [hashtagInput, setHastagInput] = useState([]);
@@ -127,6 +129,20 @@ const NewTopicModal = ({ setModalShown }) => {
 	const handleSubmit = () => {
 		console.log(categoriesList);
 		console.log(userInput);
+		const ids = dummyPosts.map((p) => p.id);
+		const newPost = {
+			id: Math.max(...ids) + 1,
+			title: userInput.title,
+			text: userInput.text,
+			likes: 0,
+			comments: 0,
+			date: "Just now",
+			hashtags: [...userInput.hashtags],
+			category: categoriesList[0],
+		};
+		console.log(newPost);
+		setDummyPosts([newPost, ...dummyPosts]);
+		setModalShown(false);
 		// createPost({...userInput, categories: categoriesList[0]})
 		// return;
 	};
